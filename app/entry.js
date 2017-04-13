@@ -1,4 +1,1 @@
-(()=>{
-  let ii=0
-  console.log(ii)
-})()
+import ./main/index.js

@@ -14,10 +14,10 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
     },
-    /*resolve: {
-        extensions: ['', '.js']
-    },*/
-    // externals: externals,
+    // resolve: {
+    //     extensions: ['', '.js']
+    // },
+    externals: externals,
     node: {
         console: true,
         global: true,
