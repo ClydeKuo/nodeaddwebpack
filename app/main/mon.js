@@ -7,5 +7,5 @@ let DB_CONN_STR={pd:'mongodb://runoob:asdqwe123@localhost:27017/runoob',dev:'mon
 MongoClient.connect(DB_CONN_STR, function(err, db) {
     console.log("连接成功！");
     (new DHTSpider({address: '0.0.0.0', port: 6881,db:db})).start();
-      db.close();
+      // db.close();
 });
