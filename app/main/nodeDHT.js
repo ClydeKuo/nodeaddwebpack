@@ -157,8 +157,8 @@ DHTSpider.prototype.onAnnouncePeerRequest = function(msg, rinfo) {
         }
     }, rinfo);
     console.log("magnet:?xt=urn:btih:%s from %s:%s", infohash.toString("hex"), rinfo.address, rinfo.port);
-    let data={url:infohash.toString("hex"),address:rinfo.address+':'+rinfo.port}
-    let collection=this.db.collection('magnet');
+    let data={url:'magnet:?xt=urn:btih:'+infohash.toString("hex"),address:rinfo.address+':'+rinfo.port}
+    let collection=this.db.collection('magnet2');
     collection.insert(data, function(err, result) {
         if(err){
             console.log('Error:'+ err);
