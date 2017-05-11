@@ -14,9 +14,9 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
     },
-    // resolve: {
-    //     extensions: ['', '.js']
-    // },
+    resolve: {
+        extensions: ['.js',' ']
+    },
     externals: externals,
     node: {
         console: true,
@@ -38,7 +38,10 @@ module.exports = {
         }]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.DefinePlugin({ //全局常量
+            ENV: process.platform == 'linux'?'"pd"':'"dev"',
+        })
     ]
 };
 
