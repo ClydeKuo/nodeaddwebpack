@@ -6,7 +6,9 @@
   "scripts": {},
   "dependencies": {
     "bencode": "^0.11.0",
-    "mongodb": "^2.2.25"
+    "cheerio": "^0.22.0",
+    "mongodb": "^2.2.25",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
