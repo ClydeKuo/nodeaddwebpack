@@ -5,7 +5,7 @@ var targetOptions = {
     url: 'http://ip.chinaz.com/getip.aspx',
     timeout: 8000,
     encoding: null,
-    proxy:"http://83.239.58.162:8080"
+    proxy:"http://178.62.68.75:8080"
 };
 request(targetOptions, function (error, response, body) {
   console.log(111)

@@ -1,6 +1,6 @@
 var request =require("request")
 var selff=require('./tem.js')
-// var kkk=require('./jsdom.js')
+var cheerio = require('cheerio')
 
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -25,7 +25,14 @@ request({
   if(error){
     console.log("error"+error)
   }else{
-    const {window} = new JSDOM(body, {
+    var $ = cheerio.load(body)
+    $($("script")[3]).empty()
+    $($("script")[4]).empty()
+    // $($("script")[5]).attr('src','http://ootid8wao.bkt.clouddn.com/jsdom.js')
+    $($("iframe")).remove()
+    // debugger
+    console.log("got html")
+    const {window} = new JSDOM($.html(), {
       // url: "http://adpays.net/v.php?user=4297",
       // referrer: "http://adpays.net/v.php?user=4297",
       // contentType: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",

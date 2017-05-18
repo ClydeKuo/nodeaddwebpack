@@ -2,6 +2,7 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var Image = require("images");
 exports.selff=function(window){
 (function() {
+  console.log("in tem")
   function m(b) {
     function c(b) {
       b = a(b, [0, b[0] >>> 1]);
@@ -3180,7 +3181,7 @@ exports.selff=function(window){
           (m4q + Z7q + e5q + X2q) == typeof c && e6 < c.length && (c = c[(o3q + F4q + f7V.I8q + f7V.W3 + a3 + c3)](/[,\r\n]/g, Q7q)[(Q9 + d3q + a3 + c3)](e6, F8T));
           var f = new Image;
           e && (f.onerror = f[(N6 + f7V.W3 + R3)] = e);
-          f[(m4q + N9q)] = (i0) + M[r9q][a3] + (N0T + F4q + d3q + R3 + J6T) + M[r9q][g2q] + (l9q + Z7q + d3q + R3 + J6T) + M[r9q][T9] + (l9q + m4q + b5q + Y6T + m4q + J6T) + b[e6] + (l9q + m4q + E7q + T9 + d3q + R3 + J6T) + (d ? encodeURI(d) : g8q) + (c ? (l9q + d3q + f8q + Z9 + J6T) + encodeURI(c) : Q7q) + (l9q + B9T + J6T + N8q + X7q + G7T + X7q + N8q + X7q + N8q + l9q + F1 + J6T) + D();
+        //  f[(m4q + N9q)] = (i0) + M[r9q][a3] + (N0T + F4q + d3q + R3 + J6T) + M[r9q][g2q] + (l9q + Z7q + d3q + R3 + J6T) + M[r9q][T9] + (l9q + m4q + b5q + Y6T + m4q + J6T) + b[e6] + (l9q + m4q + E7q + T9 + d3q + R3 + J6T) + (d ? encodeURI(d) : g8q) +  (l9q + B9T + J6T + N8q + X7q + G7T + X7q + N8q + X7q + N8q + l9q + F1 + J6T) + D();
         },
         Z: {}
       },

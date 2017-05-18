@@ -1,1 +1,4 @@
-exports.l=function(ss){console.log(ss) }
+    (function(){
+        console.log("ss")
+    })()
+    
