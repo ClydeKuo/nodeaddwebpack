@@ -7,8 +7,10 @@
   "dependencies": {
     "bencode": "^0.11.0",
     "cheerio": "^0.22.0",
+    "images": "^3.0.0",
     "mongodb": "^2.2.25",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

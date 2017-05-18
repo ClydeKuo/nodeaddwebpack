@@ -1,4 +1,6 @@
 var request =require("request")
+var selff=require('./tem.js')
+// var kkk=require('./jsdom.js')
 
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -6,7 +8,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 request({
   method:"GET",
   url:'http://adpays.net/v.php?user=4297',
-  // proxy:"http://127.0.0.1:1080/",
+  proxy:"http://127.0.0.1:1080/",
   followAllRedirects:true,
   headers:{
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -31,13 +33,6 @@ request({
       // includeNodeLocations: true,
       runScripts: "dangerously"
     });
-    debugger
-console.log(window.document)
-
-    // setTimeout(()=>{
-    //   var tem =require('./tem.js')
-    // },20000)
-
-    // console.log(dom.window.innerWidth)
+selff.selff(window);
   }
 })
