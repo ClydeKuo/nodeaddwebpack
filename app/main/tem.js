@@ -2754,8 +2754,10 @@ exports.selff=function(window){
         q5T = "ppe";
       b = b[(Q3q + d5q + q5T + Q0q + J7T + c3)]();
       var m = new XMLHttpRequest;
+      conseol.log("in XMLHttpRequest")
       m[(R8q + F4q + c3 + f8q)](b, c, !e6);
       m[(R8q + D3q + c3 + f7V.W3 + C3q + W1q + Z7q + c3 + a3 + v3q + f8q + W7)] = function() {
+        conseol.log("in XMLHttpRequest")
         var a8T = "Te",
           D0T = "Ti";
         if (m[(Q0q + c3 + f7V.W3 + R3 + o1 + Z7q + f7V.W3 + Z7q + c3)] == rb) {
