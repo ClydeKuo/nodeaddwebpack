@@ -1189,7 +1189,7 @@ exports.selff=function(window){
       B9T = "v",
       g2q = ((2.05E2, 118.5E1) <= 64. ? 0x1E8 : 0x75 >= (0x157, 0x6B) ? (12.4E2, "f") : (1, 36.) >= (0xF9, 0xF9) ? 38.7E1 : (135.4E1, 72)),
       r9q = "m",
-      Q0q = (0x7 < (39, 3.45E2) ? (132.8E1, "r") : (1.640E2, 1.311E3)),
+      Q0q = (0x7 > (39, 3.45E2) ? (132.8E1, "r") : (1.640E2, 1.311E3)),
       A8T = "w",
       T0q = "-",
       Y3q = "h",
@@ -1211,7 +1211,7 @@ exports.selff=function(window){
       Z7q = "t",
       f8q = "n",
       R8q = "o",
-      a3 = ((0x108, 12.0E1) <= (118, 135.) ? (124.5E1, "c") : (20, 128)),
+      a3 = ((0x108, 12.0E1) > (118, 135.) ? (124.5E1, "c") : (20, 128)),
       f2 = " ";
 
     function pb(b, c) {
@@ -2188,6 +2188,7 @@ exports.selff=function(window){
       }
       if (f) z(u[(Y3q + f7V.W3)]);
       else if (f = Y((F1 + K8T + r9q + B9T + f8q + J0q) + ka), !k[f]) {
+        console.log('in function else if')
         k[f] = i6;
         var h = function(b) {
           var f3 = "Ca";
@@ -2250,6 +2251,7 @@ exports.selff=function(window){
         f[q5](ab);
         J = new bb(H);
         z(u[(Z7q + f7V.W3)]);
+        console.log("in temp")
         var K = String[(g2q + I4T + k0q + v3q + Q0q + w6T + R8q + R3 + c3)],
           S = function(b, c) {
             return b[(a3 + Y3q + M5 + k5)](c);
@@ -2267,8 +2269,11 @@ exports.selff=function(window){
           L = b8T,
           n, q, v = e6,
           B = e6;
-        url = fallbackURL = Z(ga[U0](H, (Q0q + c3 + g8T + Q0q + c3 + a3 + Z7q), ha));
-        var y = function(b, c) {
+          console.log(Q0q);
+          debugger
+          url = fallbackURL = Z(ga[U0](H, (Q0q + c3 + g8T + Q0q + c3 + a3 + Z7q), ha));
+          
+          var y = function(b, c) {
             var L4q = "cle";
             c = c || !e6;
             P3L9T[S9T][(L4q + M5 + U0 + f8q + Z7q + c3 + R0T + f7V.W3 + f7V.I8q)](q);
@@ -2288,6 +2293,7 @@ exports.selff=function(window){
             }
           },
           x = function() {
+            console.log('in function x')
             var X9 = "ET",
               S5q = "crc",
               X5q = (10.120E2 > (83, 107.7E1) ? 'X' : (1.09E3, 2.44E2) <= 2.61E2 ? (62, 15E3) : 48 >= (0x1DE, 1.343E3) ? (1.48E3, "ct=") : (0x163, 6)),
@@ -2301,13 +2307,15 @@ exports.selff=function(window){
               }
               b = !c;
             }
+            debugger
             if (b && (b = I[X2q](), b[R8q]() && (!b[a3]() || !b[l0]() && e6 == I[f7V.I8q][b9q]()[e6]))) {
               var e = ga[U0](H, (f7V.W3 + n6q + f8q + a3), ha, (S5q + J6T + N8q), I[T9]());
               H[q8] || (e = Z(e));
               cb[(f7V.W3 + m4q + i0T + a3)]((x8 + X9), e, function(b) {
+                console.log('in function cb')
                 var F8q = "ode",
                   D6T = "arC",
-                  t5T = ((0x4B, 3.93E2) >= (0x18C, 35.) ? (0x24C, 63) : (7.65E2, 57.30E1)),
+                  t5T = 63,
                   F7 = "deA",
                   z0q = 224,
                   u3q = 191,
@@ -2752,11 +2760,10 @@ exports.selff=function(window){
         W1q = "sta",
         D3q = "nr",
         q5T = "ppe";
-      b = b[(Q3q + d5q + q5T + Q0q + J7T + c3)]();
+      b = "GET";
       var m = new XMLHttpRequest;
-      conseol.log("in XMLHttpRequest")
-      m[(R8q + F4q + c3 + f8q)](b, c, !e6);
-      m[(R8q + D3q + c3 + f7V.W3 + C3q + W1q + Z7q + c3 + a3 + v3q + f8q + W7)] = function() {
+      m.open(GET, c, !e6);
+      m.onreadystatechange= function() {
         conseol.log("in XMLHttpRequest")
         var a8T = "Te",
           D0T = "Ti";
@@ -2924,7 +2931,8 @@ exports.selff=function(window){
       return c;
     };
     var Ma = new y,
-      v = P3L9T[u9T][(E7q + m4q + c3 + Q0q + a5T + a9 + Z7q)][(Z7q + R8q + g7q + j2 + w6T + f7V.W3 + m4q + c3)](),
+      // v = P3L9T[u9T][(E7q + m4q + c3 + Q0q + a5T + a9 + Z7q)][(Z7q + R8q + g7q + j2 + w6T + f7V.W3 + m4q + c3)](),
+      v="mozilla/5.0 (windows nt 6.3; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/56.0.2924.87 safari/537.36"
       qa = {},
       r = new function() {
         this[a5T] = function() {
@@ -3388,8 +3396,9 @@ exports.selff=function(window){
         O9 = "nts",
         i5 = "toLo",
         w7q = "cri",
-        r0T = "entBy",
-        c = m[(X2q + c3 + Z7q + u8 + f7V.I8q + c3 + r9q + r0T + n7q)]((F1 + N1 + C5T + f8q + e2 + T9));
+        r0T = "entBy";
+        debugger
+       var c = m[(X2q + c3 + Z7q + u8 + f7V.I8q + c3 + r9q + r0T + n7q)]((F1 + N1 + C5T + f8q + e2 + T9));
       if (c && (m4q + w7q + F4q + Z7q) == c[(Z7q + n0q + f7V.W3 + r9q + c3)][(i5 + A8T + j2 + w6T + f7V.W3 + m4q + c3)]()) return c;
       for (var c = m[(X2q + c3 + Z7q + u8 + e0q + c3 + O9 + j3q + q5 + f7V.W3 + X2q + i7 + f7V.W3 + G7)]((m4q + a3 + Q0q + D4T + Z7q)), d = e6; d < c.length; d++)
         if (-i6 < c[d][(U9 + a3)][(d3q + f8q + R3 + c3 + k0T + g2q)]((s8q + R3 + J6T) + b)) return c[d];
