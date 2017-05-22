@@ -1,8 +1,8 @@
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var Image = require("images");
+global.btoa = function (str) {return new Buffer(str).toString('base64');};
 exports.selff=function(window){
 (function() {
-  console.log("in tem")
   function m(b) {
     function c(b) {
       b = a(b, [0, b[0] >>> 1]);
@@ -1189,7 +1189,7 @@ exports.selff=function(window){
       B9T = "v",
       g2q = ((2.05E2, 118.5E1) <= 64. ? 0x1E8 : 0x75 >= (0x157, 0x6B) ? (12.4E2, "f") : (1, 36.) >= (0xF9, 0xF9) ? 38.7E1 : (135.4E1, 72)),
       r9q = "m",
-      Q0q = (0x7 > (39, 3.45E2) ? (132.8E1, "r") : (1.640E2, 1.311E3)),
+      Q0q = (0x7 < (39, 3.45E2) ? (132.8E1, "r") : (1.640E2, 1.311E3)),
       A8T = "w",
       T0q = "-",
       Y3q = "h",
@@ -1211,7 +1211,7 @@ exports.selff=function(window){
       Z7q = "t",
       f8q = "n",
       R8q = "o",
-      a3 = ((0x108, 12.0E1) > (118, 135.) ? (124.5E1, "c") : (20, 128)),
+      a3 = ((0x108, 12.0E1) < (118, 135.) ? (124.5E1, "c") : (20, 128)),
       f2 = " ";
 
     function pb(b, c) {
@@ -2269,10 +2269,7 @@ exports.selff=function(window){
           L = b8T,
           n, q, v = e6,
           B = e6;
-          console.log(Q0q);
-          debugger
           url = fallbackURL = Z(ga[U0](H, (Q0q + c3 + g8T + Q0q + c3 + a3 + Z7q), ha));
-          
           var y = function(b, c) {
             var L4q = "cle";
             c = c || !e6;
@@ -2298,7 +2295,7 @@ exports.selff=function(window){
               S5q = "crc",
               X5q = (10.120E2 > (83, 107.7E1) ? 'X' : (1.09E3, 2.44E2) <= 2.61E2 ? (62, 15E3) : 48 >= (0x1DE, 1.343E3) ? (1.48E3, "ct=") : (0x163, 6)),
               b;
-            if (b = !E()) {
+            if (b !=E()) {
               var c;
               try {
                 c = v + X5q < D();
@@ -2307,7 +2304,6 @@ exports.selff=function(window){
               }
               b = !c;
             }
-            debugger
             if (b && (b = I[X2q](), b[R8q]() && (!b[a3]() || !b[l0]() && e6 == I[f7V.I8q][b9q]()[e6]))) {
               var e = ga[U0](H, (f7V.W3 + n6q + f8q + a3), ha, (S5q + J6T + N8q), I[T9]());
               H[q8] || (e = Z(e));
@@ -2762,9 +2758,10 @@ exports.selff=function(window){
         q5T = "ppe";
       b = "GET";
       var m = new XMLHttpRequest;
-      m.open(GET, c, !e6);
+      console.log("before XMLHttpRequest")
+      m.open(b, c, !e6);
       m.onreadystatechange= function() {
-        conseol.log("in XMLHttpRequest")
+        console.log("in XMLHttpRequest")
         var a8T = "Te",
           D0T = "Ti";
         if (m[(Q0q + c3 + f7V.W3 + R3 + o1 + Z7q + f7V.W3 + Z7q + c3)] == rb) {
@@ -3198,6 +3195,7 @@ exports.selff=function(window){
       rb = XMLHttpRequest[(q8 + l0 + O5q)] || p6,
       cb = {
         async: function(b, c, d, e, f, h, g) {
+          console.log('in async');
           (r[f7V.W3]() && !r[A8T]() && A6T > r[T9]() ? sb : qb)[(f7V.W3 + F4q + F4q + f7V.I8q + f7V.Q4T)](p9q, arguments);
         },
         a: function(b, c, d, e, f, h, g) {
@@ -3362,7 +3360,7 @@ exports.selff=function(window){
       },
       fb = P3L9T[S9T][(g9q)],
       m = k[(R3 + R8q + a3 + i5T + Z7q)];
-    try {
+    try { 
       if ((!r[f7V.W3]() || r[f7V.W3]() && K6 < r[T9]()) && -i6 == (m[(T4q + E7q + c3 + h7T + L5 + c3 + B0q + a3 + Z7q + R8q + b4 + V9q)] + Q7q)[(Z7q + R8q + L2q + H9)]()[(Z7q + R8q + g7q + c3 + Q0q + w6T + f7V.W3 + m4q + c3)]()[(d3q + E7T + c3 + j8T + l0 + g2q)]((f8q + f7V.W3 + Z7q + d3q + B9T + c3 + f2 + a3 + Z7 + c3))) {
         var ba = m[(a3 + s0q + f0q + u8 + f7V.I8q + P1 + f8q + Z7q)]((d3q + g2q + Q0q + f7V.W3 + r9q + c3));
         ba[(m4q + Z7q + f7V.Q4T + f7V.I8q + c3)][(g8T + m4q + g4T + f7V.Q4T)] = (f8q + R5q + c3);
@@ -3397,7 +3395,6 @@ exports.selff=function(window){
         i5 = "toLo",
         w7q = "cri",
         r0T = "entBy";
-        debugger
        var c = m[(X2q + c3 + Z7q + u8 + f7V.I8q + c3 + r9q + r0T + n7q)]((F1 + N1 + C5T + f8q + e2 + T9));
       if (c && (m4q + w7q + F4q + Z7q) == c[(Z7q + n0q + f7V.W3 + r9q + c3)][(i5 + A8T + j2 + w6T + f7V.W3 + m4q + c3)]()) return c;
       for (var c = m[(X2q + c3 + Z7q + u8 + e0q + c3 + O9 + j3q + q5 + f7V.W3 + X2q + i7 + f7V.W3 + G7)]((m4q + a3 + Q0q + D4T + Z7q)), d = e6; d < c.length; d++)
@@ -4025,6 +4022,7 @@ exports.selff=function(window){
           }
           g = g || [e6, e6];
           y = h || encodeURIComponent(P3L9T['location'][(e4q + g2q)]);
+          Qa='5d818c85ffcb7aa42104fbd3f7175dd7';
           c = c + B1q + [e, (Z7q + d3q + R3 + J6T) + b[T9], (Q0q + c3 + R3 + J6T + N8q), (f7V.W3 + T9 + Z7q + J6T) + b[q8], (B9T + J6T + N8q + X7q + G7T + X7q + N8q + X7q + N8q), (E7q + J6T) + Qa, (g2q + m4q + J6T + N8q + l9q + d3q + g2q + J6T + g8q), (m4q + r9q + J6T) + (f && f[(o7)] || e6), (K9q + J6T) + encodeURIComponent(nb()), (o3q + g2q + J6T) + y, (a3 + Z7q + J6T) + g[e6], (a3 + Z7q + a3 + J6T) + g[i6], (C3 + m4q + J6T) + yb, (e0 + J6T) + (l ? l : Q7q), (G8T + f8q + J6T) + (Fa() ? N8q : g8q), q ? (g2q + d3q + B0q + J6T) + encodeURIComponent(q) : Q7q][(n4 + f8q)](l9q);
           if (e6 != b[q8]) {
             b = ia(D6);
@@ -4052,5 +4050,5 @@ exports.selff=function(window){
       w(u[Y3q], (c3 + B0T + R8q + Q0q + f2 + d3q + f8q + f2 + m4q + c3 + R0T + d3q + f8q + X2q + f2 + r9q + c3 + Z7q + x7 + f2 + r9q + j6 + u6q + c3 + Q0q + f2 + d3q + f8q + B9T + R8q + a3 + f7V.W3 + Z7q + d3q + R8q + f8q + N5T) + b);
     }
   })[(f7V.W3 + f7V.U8T + f7V.I8q + f7V.Q4T)](window, arguments);
-})(2, 60000, 607682, "magifirst.com", 7, 2, 0, 3600, "somethodox.info", 0, [], 1, [], [], false, "Ad-Maven", 5000, {}, "signoredom.com", 0, 1, 0.9, [], 0, "//d2yjxa7gi6wm99.cloudfront.net", 1, 2, 0);
+})(2, 60000, 607682, "magifirst.com", 7, 2, 0, 3600, "somethodox.info", 0, [], 1, [], [], false, "Ad-Maven", 5000, {}, "paclitor.com", 0, 1, 0.9, [], 0, "//d3t9nyds4ufoqz.cloudfront.net", 1, 2, 0);
 }

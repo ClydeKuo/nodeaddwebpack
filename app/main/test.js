@@ -8,7 +8,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 request({
   method:"GET",
   url:'http://adpays.net/v.php?user=4297',
-  proxy:"http://127.0.0.1:1080/",
+  proxy:"http://80.240.60.165:8081/",
   followAllRedirects:true,
   headers:{
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -28,13 +28,14 @@ request({
     var $ = cheerio.load(body)
     $($("script")[3]).empty()
     $($("script")[4]).empty()
+    // console.log($.html())
     // $($("script")[5]).attr('src','http://ootid8wao.bkt.clouddn.com/jsdom.js')
-    // $($("iframe")).remove()
+    $($("iframe")).remove()
     // debugger
     console.log("got html")
     const {window} = new JSDOM($.html(), {
       url: "http://adpays.net/v.php?user=4297",
-      referrer: "http://adpays.net/v.php?user=4297",
+      // referrer: "https://www.discoveryland.tk/",
       contentType: "text/html;q=0.9,image/webp,*/*;q=0.8",
       userAgent: "Mozilla/8.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
       includeNodeLocations: true,

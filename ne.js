@@ -23,13 +23,10 @@ window.addEventListener('ajaxReadyStateChange', function (e) {
   console.log(e.detail); // XMLHttpRequest Object
 });
 window.addEventListener('ajaxAbort', function (e) {
-  // console.log(e.detail.responseText); // XHR ·µ»ØµÄÄÚÈÝ
+  // console.log(e.detail.responseText); // XHR ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
 });
 // xhr.send();
 
 window.onload = function() {
     console.log($('html'));
 }
-
-
-<head><meta charset="UTF-8"><title></title></head><body><div id="">ssss</div></body>
