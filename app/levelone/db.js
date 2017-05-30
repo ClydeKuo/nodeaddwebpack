@@ -18,7 +18,7 @@ var Schema = mongoose.Schema;
 //骨架模版  
 var ipListSchema = new Schema({  
     name:String,
-    urls : String  
+    urls : Array  
 })  
 //模型  
 var IpList = mongoose.model('ipList', ipListSchema); 
