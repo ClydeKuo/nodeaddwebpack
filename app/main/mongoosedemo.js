@@ -4,16 +4,21 @@ var mongourl = 'mongodb://clyde:asdqwe123@list-shard-00-00-si9p2.mongodb.net:270
 mongoose.connect(mongourl);  
 var Schema = mongoose.Schema;  
 //骨架模版  
-var ipListSchema = new Schema({  
+var demoSchema = new Schema({  
     ahref : String  
 })  
 //模型  
-var IpList = mongoose.model('ipList', ipListSchema); 
-var ipList = new IpList({ ahref : '1234567'})  
-ipList.save(function(err) {  
-                if (err) {console.log('保存失败')  
-                    return;  
-                }                                                                 
+var Demo = mongoose.model('demo', demoSchema); 
+var demo = new Demo({ ahref : '1234567'})  
+demo.save(function(err) {  
+                                                                           
+                console.log('meow'); 
+                return 
+            })  
+var Demo2 = mongoose.model('demo', demoSchema); 
+var demo2 = new Demo2({ ahref : 'qwety'})  
+demo2.save(function(err) {  
+                                                                           
                 console.log('meow'); 
                 return 
             })  

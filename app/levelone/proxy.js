@@ -1,19 +1,13 @@
 var cheerio = require('cheerio')
 var request =require("request")
+var IpList=require('./IpList.js')
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 var targetUrl='http://adpays.net/v.php?user=4297'
 var proxyIp="http://127.0.0.1:1080"
-var mongoose = require('mongoose')
-mongoose.Promise = global.Promise
-var mongourl = 'mongodb://clyde:asdqwe123@list-shard-00-00-si9p2.mongodb.net:27017,list-shard-00-01-si9p2.mongodb.net:27017,list-shard-00-02-si9p2.mongodb.net:27017/list?ssl=true&replicaSet=list-shard-0&authSource=admin'
-mongoose.connect(mongourl);  
-var Schema = mongoose.Schema;  
-//骨架模版  
-var ipListSchema = new Schema({  
-    ahref : String  
-})  
-//模型  
-var IpList = mongoose.model('ipList', ipListSchema); 
+if (process.platform == 'linux') {
+    console.log('This platform is linux:' + (process.platform == 'linux'));
+    proxy = ""
+}
 var targetOptions = {
     method: 'GET',
     url: 'http://ip.chinaz.com/getip.aspx',
@@ -67,9 +61,8 @@ function verifyProxy(simpleProxy,simpleProxyIp){
           // console.log("simpleProxy:"+simpleProxy)
           if (ret&&ret.ip==simpleProxyIp) {
               console.log(`验证成功==>> ${ret.address}`)
-              ptp(simpleProxy)
-              proxyList.push(simpleProxy)
-              var IpList = mongoose.model('ipList', ipListSchema); 
+              // ptp(simpleProxy)
+              // proxyList.push(simpleProxy)
               var ipList = new IpList({ ahref : simpleProxy})  
               ipList.save(function(err) {  
                               if (err) {console.log('保存失败')  
@@ -88,36 +81,9 @@ function verifyProxy(simpleProxy,simpleProxyIp){
       }
   })
 }
-//paid to promote
-function ptp(simpleProxy){
-  request({
-    method:"POST",
-    url:'http://adpays.net/serve/dlvalid.php?var1=538&var2=http://adpays.net/v.php?user=4297&var3=deeacfecebb&var4=1494570942',
-    proxy: simpleProxy,
-    // proxy:"http://127.0.0.1:9999",
-    followAllRedirects:true,
-    headers:{
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-      'Accept-Encoding': 'deflate, sdch, br',
-      'Accept-Language': 'zh-CN,zh;q=0.8',
-      'User-Agent': 'Mozilla/8.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
-      'upgrade-insecure-requests':'1',
-      "authority":"hidemy.name",
-      "cache-control":"max-age=0",
-      // "Connection":"keep-alive",
-      'Cookie':"__cfduid=d76cafce38bd01b3b60041af7c7da412c1491010798; PHPSESSID=gflj3dti5bhj6rjol2130iheo7; TawkConnectionTime=0; __tawkuuid=e::adpays.net::nlF8BgfwL9/xShZQs7lP+IDLjoC4VJNJFauv4HokXlnn3l1uvpkAud9hlBKxHIXO::2; Tawk_5703f9be5c96cca60a9d16c2=vs3.tawk.to::0; ptp=1494564903; _ga=GA1.2.518476455.1494559785; _gid=GA1.2.1591825687.1494565013; _gat=1",
-
-    }
-  },function(error, response, body){
-    if(error){
-      console.log("error"+error)
-    }else{
-      console.log('bingo')
-    }
-  })
-}
-
-for(var i=0;i<15;i++){
-  option.url="https://hidemy.name/en/proxy-list/?start="+i*64
-  getProxyIp()
-}
+// for(var i=0;i<15;i++){
+//   option.url="https://hidemy.name/en/proxy-list/?start="+i*64
+//   getProxyIp()
+// }
+option.url="https://hidemy.name/en/proxy-list/"
+getProxyIp()

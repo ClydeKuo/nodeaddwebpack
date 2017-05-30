@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 const path = require('path');
 let externals = _externals();
-
+var babelpolyfill = require("babel-polyfill");
 module.exports = {
     context: path.resolve(__dirname, './app'),
     entry: {
@@ -39,9 +39,11 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),
-        new webpack.DefinePlugin({ //全局常量
-            ENV: process.platform == 'linux'?'"pd"':'"dev"',
-        })
+        new webpack.HotModuleReplacementPlugin(),
+        // new webpack.DefinePlugin({ //全局常量
+        //     ENV: process.platform == 'linux'?'"pd"':'"dev"',
+        // }),
+    
     ]
 };
 
