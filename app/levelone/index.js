@@ -1,2 +1,2 @@
 import "babel-polyfill";
-import './proxy-list.js'
+import './update/proxy-list.js'

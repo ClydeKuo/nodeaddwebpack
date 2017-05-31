@@ -13,13 +13,13 @@ db.on('connected', ()=>{console.log('db connected');});
 db.on('disconnecting', ()=>{console.log('db disconnecting...');});
 db.on('disconnected', ()=>{console.log('db disconnected');});
 db.on('close', ()=>{console.log('db close');});
-mongoose.connect(mongourl);  
-var Schema = mongoose.Schema;  
-//骨架模版  
-var ipListSchema = new Schema({  
+mongoose.connect(mongourl);
+var Schema = mongoose.Schema;
+//骨架模版
+var ipListSchema = new Schema({
     name:String,
-    urls : Array  
-})  
-//模型  
-var IpList = mongoose.model('ipList', ipListSchema); 
+    urls : Array
+})
+//模型
+var IpList = mongoose.model('ipList', ipListSchema);
 module.exports=IpList

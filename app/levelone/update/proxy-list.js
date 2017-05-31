@@ -1,7 +1,7 @@
 var cheerio = require('cheerio')
 var request =require("request-promise")
-var IpList=require('./db.js')
-var proxyIp=require('./env.js')
+var db=require('../db.js')
+var proxyIp=require('../env.js')
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 var arrProxy=[]
 var option={
@@ -24,6 +24,7 @@ function getProxyIp(){
   return request(option,function(error,response,body){
       if(error){console.log(error)
       }else if(response.statusCode==200){
+        console.log('got web data')
         filterIp(body)
       }else{
           console.log(response.statusCode)
@@ -37,29 +38,38 @@ function filterIp(data){
      var simpleProxyIp= $(temp[i]).text()
      var simpleProxy='http://'+simpleProxyIp+":"+$(temp[i]).next().text()
      arrProxy.push(simpleProxy)
-     arrProxy.push(simpleProxy)
   }
 }
 
-// 写入数据
-function saveData(){
-    var ipList = new IpList({ name : 'proxy-list',urls:arrProxy})  
-              ipList.save(function(err) {  
-                              if (err) {console.log('保存失败')  
-                                  return;  
-                              }                                                                 
-                console.log('meow');  
-                }) 
+// 更新数据
+function insertData(collectionName,arrProxy){
+  db.find().where('name').eq(collectionName).exec((err,list)=>{
+      if(err){
+          console.log(err)
+      }else{
+          console.log('old array length:'+list[0].urls.length)
+          var newlist=list[0].urls.concat(arrProxy)
+          db.update({name : collectionName},
+              {$set : { urls: newlist}},
+              {safe : true, upsert : true},
+              (err, rawResponse)=>{
+                  if (err) {
+                      console.log(err);
+                  } else {
+                      console.log('update success!')
+                  }
+              }
+          );
+      }
+  })
 }
-    
 
- //获取多页数据
- async function getMultipage(){
-     for(var i=0;i<1;i++){
-        option.url="https://hidemy.name/en/proxy-list/?start="+i*64
-        await getProxyIp()
-        console.log('get '+ i)
-     }
- } 
- getMultipage(). then(saveData)
+ //获取数据
+ async function getPage(){
+     option.url="https://hidemy.name/en/proxy-list/"
+     await getProxyIp()
+ }
+ getPage(). then(()=>{
+   insertData('proxy-list',arrProxy)
+ })
 //  module.exports=''
