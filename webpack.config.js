@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
+// const db = require('./db.js');
 let externals = _externals();
 var babelpolyfill = require("babel-polyfill");
 module.exports = {
@@ -32,18 +33,20 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel-loader',
             query: {
-                presets: ['es2015', 'stage-0']
+                presets: ['es2015', 'stage-0'],
+                plugins: ['transform-runtime']
             },
             exclude: /node_modules/
         }]
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin(),
+        // new webpack.optimize.UglifyJsPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        // new webpack.DefinePlugin({ //全局常量
-        //     ENV: process.platform == 'linux'?'"pd"':'"dev"',
-        // }),
-    
+        new webpack.DefinePlugin({ //全局常量
+            ENV: process.platform == 'linux'?'"pd"':'"dev"',
+            // db:db
+        }),
+
     ]
 };
 

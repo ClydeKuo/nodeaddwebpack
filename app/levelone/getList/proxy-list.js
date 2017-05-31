@@ -1,6 +1,6 @@
 var cheerio = require('cheerio')
 var request =require("request-promise")
-var IpList=require('../db.js')
+// var IpList=require('../db.js')
 var proxyIp=require('../env.js')
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 var arrProxy=[]

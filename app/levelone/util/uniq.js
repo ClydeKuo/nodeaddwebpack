@@ -1,7 +1,5 @@
-// import db from './db.js'
-var db=require('./db.js')
-function checkrep(data){
-  db.find().where('name').eq(data).exec((err,list)=>{
+function checkrep(collectionName){
+  db.find().where('name').eq(collectionName).exec((err,list)=>{
       if(err){
           console.log(err)
       }else{
@@ -11,14 +9,14 @@ function checkrep(data){
             console.log('nothing changed')
             return
           }
-          db.update({name : data},
+          db.update({name : collectionName},
               {$set : { urls: newlist}},
               {safe : true, upsert : true},
               (err, rawResponse)=>{
                   if (err) {
                       console.log(err);
                   } else {
-                      console.log('update success!')
+                      console.log('uniq success!')
                   }
               }
           );

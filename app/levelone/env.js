@@ -1,5 +1,5 @@
 var proxyIp="http://127.0.0.1:1080"
-if (process.platform == 'linux') {
+if (ENV == 'pd') {
     console.log('This platform is linux:' + (process.platform == 'linux'));
     proxyIp = ""
 }

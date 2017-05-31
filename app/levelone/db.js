@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 mongoose.Promise = global.Promise
-var mongourl = 'mongodb://clyde:asdqwe123@list-shard-00-00-si9p2.mongodb.net:27017,list-shard-00-01-si9p2.mongodb.net:27017,list-shard-00-02-si9p2.mongodb.net:27017/list?ssl=true&replicaSet=list-shard-0&authSource=admin'
+var mongourl = 'mongodb://clyde:asdqwe123@list-shard-00-00-si9p2.mongodb.net:27017,list-shard-00-01-si9p2.mongodb.net:27017,list-shard-00-02-si9p2.mongodb.net:27017/demo?ssl=true&replicaSet=list-shard-0&authSource=admin'
 // 获得db对象
 let db = mongoose.connection;
 // 各种事件
@@ -22,4 +22,5 @@ var ipListSchema = new Schema({
 })
 //模型
 var IpList = mongoose.model('ipList', ipListSchema);
-module.exports=IpList
+// module.exports=IpList
+global.db=IpList
