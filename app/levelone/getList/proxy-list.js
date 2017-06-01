@@ -36,7 +36,10 @@ function filterIp(data){
   for(var i=0,len=temp.length;i<len;i++){
      var simpleProxyIp= $(temp[i]).text()
      var simpleProxy='http://'+simpleProxyIp+":"+$(temp[i]).next().text()
-     arrProxy.push(simpleProxy)
+     if(i<20){
+         arrProxy.push(simpleProxy)
+     }
+     
   }
 }
 
@@ -54,7 +57,7 @@ function saveData(){
 
  //获取多页数据
  async function getMultipage(){
-     for(var i=0;i<2;i++){
+     for(var i=0;i<1;i++){
         option.url="https://hidemy.name/en/proxy-list/?start="+i*64
         await getProxyIp()
         console.log('get '+ i)

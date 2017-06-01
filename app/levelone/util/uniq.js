@@ -1,27 +1,31 @@
 function checkrep(collectionName){
-  db.find().where('name').eq(collectionName).exec((err,list)=>{
-      if(err){
-          console.log(err)
-      }else{
-          // console.log(list[0].urls)
-          var newlist=uniq(list[0].urls)
-          if(newlist.length==list[0].urls.length){
-            console.log('nothing changed')
-            return
-          }
-          db.update({name : collectionName},
-              {$set : { urls: newlist}},
-              {safe : true, upsert : true},
-              (err, rawResponse)=>{
-                  if (err) {
-                      console.log(err);
-                  } else {
-                      console.log('uniq success!')
-                  }
-              }
-          );
-      }
-  })
+    return new Promise((resolve, reject)=> {
+        db.find().where('name').eq(collectionName).exec((err,list)=>{
+            if(err){
+                console.log(err)
+            }else{
+                // console.log(list[0].urls)
+                var newlist=uniq(list[0].urls)
+                if(newlist.length==list[0].urls.length){
+                    console.log('nothing changed')
+                    return
+                }
+                db.update({name : collectionName},
+                    {$set : { urls: newlist}},
+                    {safe : true, upsert : true},
+                    (err, rawResponse)=>{
+                        if (err) {
+                            console.log(err);
+                            reject()
+                        } else {
+                            console.log('uniq success!')
+                            resolve()
+                        }
+                    }
+                );
+            }
+        })
+    })
 }
 //去重
 function uniq(list){

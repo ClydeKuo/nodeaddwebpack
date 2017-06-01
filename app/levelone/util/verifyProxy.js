@@ -5,48 +5,45 @@ let targetOptions = {
     timeout: 8000,
     encoding: null,
 };
+let checkedArr=[]
+let collectionName=''
 //验证代理是否可用
-function check(simpleProxy,i){
+function check(simpleProxy,times=1){
   return new Promise(function(resolve, reject) {
       targetOptions.proxy=simpleProxy
       // targetOptions.proxy='http://127.0.0.1:1080'
       let simpleProxyIp=simpleProxy.split(':')[0]
-      console.log(simpleProxy)
-      console.log('checking')
+      console.log('checking '+simpleProxy)
       request(targetOptions, function (error, response, body) {
           try {
-              if (error) throw reject(error);
-              console.log('checked')
-              body = body.toString();
-              let arr=body.split("'")
-              let ret={ip:arr[1],address:arr[3]}
-              if (ret&&ret.ip==simpleProxyIp) {
-                  console.log('验证成功==>> '+ret.address)
-                  console.log('meow');
-                  resolve(simpleProxy)
-              }else{
-                console.log('验证不成功==>> '+ret.address)
-                reject()
-              }
+              if(error){
+                    // if(times<6){
+                    //     console.log(simpleProxy+' request error happened  and request at '+ ++times+' times')
+                    //     // check(simpleProxy,times).then(()=>{},()=>{})
+                    // }else{
+                    //      reject(simpleProxy+' request error:'+error)
+                    // }
+                    reject('fuck')
+                }else{
+                    body = body.toString();
+                    let arr=body.split("'")
+                    let ret={ip:arr[1],address:arr[3]}
+                    console.log('ret='+JSON.stringify(ret))
+                    if (ret&&ret.ip) {
+                        console.log('验证成功==>> '+ret.address)
+                        resolve(simpleProxy)
+                    }else{
+                        reject('验证不成功==>> '+ret.address)
+                    }
+                }
           } catch (e) {
-              /*if(e.toString().match(/ETIMEDOUT/)){
-                console.log("ETIMEDOUT happened, connect again");
-                check(simpleProxy)
-              }else{
-                reject(e)
-              }*/
-              if(i<5){
-                  console.log('connect '+ ++i+' times')
-                  check(simpleProxy,i).then(()=>{},(e)=>{
-                      console.log('error happened at '+i+' times:'+e)
-                  })
-              }
-              reject(e)
+              reject('formatting error:'+e)
           }
       })
   })
 }
-function updateCollection(collectionName,newlist){
+//更新数据
+function updateCollection(newlist){
   db.update({name : collectionName},
       {$set : { urls: newlist}},
       {safe : true, upsert : true},
@@ -60,38 +57,45 @@ function updateCollection(collectionName,newlist){
   );
 }
 
- function verifyProxy(collectionName){
-  db.find().where('name').eq(collectionName).exec((err,list)=>{
-    console.log('in '+collectionName)
-      if(err){
-          console.log(err)
-      }else{
-        console.log('got list')
-          let urls=list[0].urls
-          let len=urls.length
-          let newlist=[]
-          let times=0
-          new Promise((resolve, reject)=>{
-            urls.forEach((item,index)=>{
-            check(urls[0],0).then((simpleProxy)=>{
-                newlist.push(simpleProxy)
-                console.log("bingo")
-                checkresolve(len,times,resolve)
-            },(e)=>{
-                console.log('error happened'+e)
-                checkresolve(len,times,resolve)
-            })
-          })
-          }).then(()=>{
-              console.log("complete!")
-          })
-          // updateCollection(collectionName,newlist)
-      }
-  })
+//获取待验证的IP地址
+ function verifyProxy(name){
+    collectionName=name
+    db.find().where('name').eq(collectionName).exec((err,list)=>{
+        console.log('in '+collectionName)
+        if(err){
+            console.log(err)
+        }else{
+            console.log('got list')
+            repeation(list[0].urls)
+            // updateCollection(collectionName,newlist)
+        }
+    })
 }
-function checkresolve(len,times,resolve){
-    if(len==++times){
-        resolve()
+//按顺序发送request请求
+async function repeation(urls){
+    let len=urls.length
+    // let add=addSelf()
+    let times=1
+    for(let i=0;i<len;i++){
+        await check(urls[i]).then((simpleProxy)=>{
+            console.log(urls[i] +" bingo")
+            checkedArr.push(simpleProxy)
+        },(e)=>{
+            //重新验证
+            if(e=='fuck'){
+                if(times<2){
+                    console.log(urls[i]+' request error happened  and request at '+ ++times+' times')
+                    i--
+                }else{
+                    times=1
+                    console.log(urls[i]+' request error')
+                }
+            }else{
+                console.log(e)
+            }
+        })
     }
+    console.log(checkedArr.length)
+    updateCollection(checkedArr)
 }
 module.exports=verifyProxy
