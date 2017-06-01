@@ -20,7 +20,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c98b1044498eef3493d8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "743e1aa936ebbcef30be"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -1388,18 +1388,20 @@ var request = __webpack_require__(72);
 var targetOptions = {
     method: 'GET',
     url: 'http://ip.chinaz.com/getip.aspx',
-    timeout: 80000,
+    timeout: 8000,
     encoding: null
 };
 //验证代理是否可用
-function check(simpleProxy) {
+function check(simpleProxy, i) {
     return new _promise2.default(function (resolve, reject) {
         targetOptions.proxy = simpleProxy;
+        // targetOptions.proxy='http://127.0.0.1:1080'
         var simpleProxyIp = simpleProxy.split(':')[0];
+        console.log(simpleProxy);
         console.log('checking');
         request(targetOptions, function (error, response, body) {
             try {
-                if (error) throw error;
+                if (error) throw reject(error);
                 console.log('checked');
                 body = body.toString();
                 var arr = body.split("'");
@@ -1413,12 +1415,19 @@ function check(simpleProxy) {
                     reject();
                 }
             } catch (e) {
-                if (e.toString().match(/ETIMEDOUT/)) {
-                    console.log("ETIMEDOUT happened, connect again");
-                    check(simpleProxy);
-                } else {
-                    reject(e);
+                /*if(e.toString().match(/ETIMEDOUT/)){
+                  console.log("ETIMEDOUT happened, connect again");
+                  check(simpleProxy)
+                }else{
+                  reject(e)
+                }*/
+                if (i < 5) {
+                    console.log('connect ' + ++i + ' times');
+                    check(simpleProxy, i).then(function () {}, function (e) {
+                        console.log('error happened at ' + i + ' times:' + e);
+                    });
                 }
+                reject(e);
             }
         });
     });
@@ -1441,16 +1450,31 @@ function verifyProxy(collectionName) {
         } else {
             console.log('got list');
             var urls = list[0].urls;
+            var len = urls.length;
             var newlist = [];
-            check(urls[0]).then(function () {}, function () {});
-            // urls.forEach( async (item)=>{
-            //   let simpleProxy=  await check(item)
-            //   newlist.push(simpleProxy)
-            // })
-
+            var times = 0;
+            new _promise2.default(function (resolve, reject) {
+                urls.forEach(function (item, index) {
+                    check(urls[0], 0).then(function (simpleProxy) {
+                        newlist.push(simpleProxy);
+                        console.log("bingo");
+                        checkresolve(len, times, resolve);
+                    }, function (e) {
+                        console.log('error happened' + e);
+                        checkresolve(len, times, resolve);
+                    });
+                });
+            }).then(function () {
+                console.log("complete!");
+            });
             // updateCollection(collectionName,newlist)
         }
     });
+}
+function checkresolve(len, times, resolve) {
+    if (len == ++times) {
+        resolve();
+    }
 }
 module.exports = verifyProxy;
 
