@@ -42,7 +42,7 @@ function filterIp(data){
 
 // 写入数据
 function saveData(){
-    var ipList = new IpList({ name : 'proxy-list',urls:arrProxy})
+    var ipList = new db({ name : 'proxy-list',urls:arrProxy})
     ipList.save(function(err) {
       if (err) {console.log('保存失败')
           return;
@@ -54,7 +54,7 @@ function saveData(){
 
  //获取多页数据
  async function getMultipage(){
-     for(var i=0;i<15;i++){
+     for(var i=0;i<2;i++){
         option.url="https://hidemy.name/en/proxy-list/?start="+i*64
         await getProxyIp()
         console.log('get '+ i)

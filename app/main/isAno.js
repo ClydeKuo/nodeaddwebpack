@@ -5,7 +5,7 @@ var targetOptions = {
     url: 'http://ip.chinaz.com/getip.aspx',
     timeout: 8000,
     encoding: null,
-    proxy:"http://80.240.60.165:8081"
+    // proxy:"http://80.240.60.165:8081"
 };
 request(targetOptions, function (error, response, body) {
   console.log(111)
@@ -13,7 +13,9 @@ request(targetOptions, function (error, response, body) {
         if (error) throw error;
         body = body.toString();
         console.log(body);
-        eval(`var ret = ${body}`);
+        // eval(`var ret = ${body}`);
+        var ret=body.replace(/ip/,"'ip'").replace(/address/,"'address'")
+        var ret=JSON.parse(ret)
         if (ret) {
             console.log(`验证成功==>> ${ret.address}`);
         }
