@@ -2,7 +2,7 @@
 
 var EventEmitter = require('events');
 var util = require('util');
-
+require('./db')
 var DHTSpider = require('./dhtspider');
 var BTClient = require('./btclient');
 

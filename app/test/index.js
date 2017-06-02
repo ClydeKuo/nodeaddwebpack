@@ -14,11 +14,20 @@ p2p.ignore(function (infohash, rinfo, callback) {
     callback(theInfohashIsExistsInDatabase);
 });
 
+// 写入数据
+function saveData(data){
+    var ipList = new db(data)
+    ipList.save(function(err) {
+      if (err) {console.log('保存失败')
+          return;
+      }
+      console.log('meow');
+    })
+}
 p2p.on('metadata', function (metadata) {
     console.log('----------------------------')
     console.log(new Date())
-    metadata.info.name=metadata.info.name.toString()
-    metadata.info.pieces=metadata.info.pieces.toString()
+    saveData(metadata)
     console.log(metadata);
 });
 
