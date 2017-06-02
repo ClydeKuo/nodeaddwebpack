@@ -18,7 +18,7 @@ p2p.on('metadata', function (metadata) {
     console.log('----------------------------')
     console.log(new Date())
     metadata.info.name=metadata.info.name.toString()
-    metadata.pieces.name=metadata.pieces.name.toString()
+    metadata.info.pieces=metadata.info.pieces.toString()
     console.log(metadata);
 });
 
