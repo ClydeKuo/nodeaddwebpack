@@ -16,7 +16,7 @@ p2p.ignore(function (infohash, rinfo, callback) {
 
 p2p.on('metadata', function (metadata) {
 console.log('----------------------------')
-onsole.log(new date())
+console.log(new date())
     console.log(metadata);
 });
 
