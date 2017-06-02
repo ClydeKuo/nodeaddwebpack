@@ -16,8 +16,8 @@ p2p.ignore(function (infohash, rinfo, callback) {
 
 // 写入数据
 function saveData(data){
-    var ipList = new db(data)
-    ipList.save(function(err) {
+    var torrent = new tdb(data)
+    torrent.save(function(err) {
       if (err) {console.log('保存失败')
           return;
       }
