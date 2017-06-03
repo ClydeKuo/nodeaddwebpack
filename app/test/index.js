@@ -27,24 +27,23 @@ function saveData(data){
 
 function change(value){
     if(value/1024>=1&&value/1024<1024){
-        return (value/1024).toFixed(2)+'kb'
+        return (value/1024).toFixed(2)+'K'
     }else if(value/1048576>=1&&value/1048576<1024){
-        return (value/1048576).toFixed(2)+"mb"
+        return (value/1048576).toFixed(2)+"M"
     }else if(value/1073741824>=1&&value/1073741824<1024){
-        return (value/1073741824).toFixed(2) +'gb'
+        return (value/1073741824).toFixed(2) +'G'
     }else if(value/1099511627776>=1&&value/1099511627776<1024){
-        return (value/1099511627776).toFixed(2) +'tb'
+        return (value/1099511627776).toFixed(2) +'T'
     }else{
         return ''
     }
 }
 p2p.on('metadata', function (metadata) {
-    tdb.find({infohash:metadata.infohash}).then(function(res){
+    tdb.find({magnet:metadata.magnet}).then(function(res){
         if(res.length==0){
             console.log('----------------------------')
             console.log(new Date())
-            var data={infohash:metadata.infohash,
-                    magnet:metadata.magnet,
+            var data={magnet:metadata.magnet,
                     name:metadata.info.name.toString(),
                     length:change(metadata.info.length)
             }

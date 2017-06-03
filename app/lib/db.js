@@ -17,7 +17,6 @@ mongoose.connect(mongourl);
 var Schema = mongoose.Schema;
 //骨架模版
 var torrentSchema = new Schema({
-    infohash:String,
     magnet:String,
     name:String,
     length:String,
