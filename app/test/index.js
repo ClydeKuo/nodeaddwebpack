@@ -27,13 +27,13 @@ function saveData(data){
 
 function change(value){
     if(value/1024>=1&&value/1024<1024){
-        return Math.round(value/1024)+'kb'
+        return (value/1024).toFixed(2)+'kb'
     }else if(value/1048576>=1&&value/1048576<1024){
-        return Math.round(value/1048576)+"mb"
+        return (value/1048576).toFixed(2)+"mb"
     }else if(value/1073741824>=1&&value/1073741824<1024){
-        return Math.round(value/1073741824) +'gb'
+        return (value/1073741824).toFixed(2) +'gb'
     }else if(value/1099511627776>=1&&value/1099511627776<1024){
-        return Math.round(value/1099511627776) +'tb'
+        return (value/1099511627776).toFixed(2) +'tb'
     }else{
         return ''
     }
