@@ -6,7 +6,7 @@ function check(infohash){
     return tdb.find({infohash:infohash})
 }
 check('ad01e26fff09b01b67043b9616070e38857848').then(function(res){
-    console.log(res)
+    console.log(res.length)
 },function(err){
     console.log('err:  '+err)
 })

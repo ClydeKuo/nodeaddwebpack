@@ -35,7 +35,7 @@ function change(value){
     }else if(value/1099511627776>=1&&value/1099511627776<1024){
         return Math.round(value/1099511627776) +'tb'
     }else{
-        return 'NaN: '+value
+        return ''
     }
 }
 p2p.on('metadata', function (metadata) {
