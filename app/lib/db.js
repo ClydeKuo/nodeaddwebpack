@@ -17,11 +17,11 @@ mongoose.connect(mongourl);
 var Schema = mongoose.Schema;
 //骨架模版
 var torrentSchema = new Schema({
-    info:Object,
-    address : String,
-    port:Number,
     infohash:String,
-    magnet:String
+    magnet:String,
+    name:String,
+    length:Number,
+    pieces:String
 })
 //模型
 var torrent = mongoose.model('torrent', torrentSchema);

@@ -27,8 +27,14 @@ function saveData(data){
 p2p.on('metadata', function (metadata) {
     console.log('----------------------------')
     console.log(new Date())
-    saveData(metadata)
-    console.log(metadata);
+    var data={infohash:metadata.infohash,
+            magnet:metadata.magnet,
+            name:metadata.info.name.toString(),
+            pieces:metadata.info.pieces.toString(),
+            length:metadata.info.length
+    }
+    saveData(data)
+    console.log(data);
 });
 
 p2p.listen(6881, '0.0.0.0');
