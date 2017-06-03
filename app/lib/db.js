@@ -20,8 +20,7 @@ var torrentSchema = new Schema({
     infohash:String,
     magnet:String,
     name:String,
-    length:Number,
-    pieces:String
+    length:String,
 })
 //模型
 var torrent = mongoose.model('torrent', torrentSchema);

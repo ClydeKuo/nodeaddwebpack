@@ -24,14 +24,24 @@ function saveData(data){
       console.log('meow');
     })
 }
+function change(value){
+    if(value/1024>=1&&value/1024<1024){
+        return value/1024+'kb'
+    }else if(value/1048576>=1&&value/1048576<1024){
+        return value/1048576+"mb"
+    }else if(value/1073741824>=1&&value/1073741824<1024){
+        return value/1073741824 +'gb'
+    }else{
+        return value/1099511627776 +'tb'
+    }
+}
 p2p.on('metadata', function (metadata) {
     console.log('----------------------------')
     console.log(new Date())
     var data={infohash:metadata.infohash,
             magnet:metadata.magnet,
             name:metadata.info.name.toString(),
-            pieces:metadata.info.pieces.toString(),
-            length:metadata.info.length
+            length:change(metadata.info.length)
     }
     saveData(data)
     console.log(data);
