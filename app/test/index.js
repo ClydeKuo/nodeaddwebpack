@@ -39,7 +39,7 @@ function change(value){
     }
 }
 p2p.on('metadata', function (metadata) {
-    tdb.find({infohash:infohash}).then(function(res){
+    tdb.find({infohash:metadata.infohash}).then(function(res){
         if(res.length>0){
             console.log('----------------------------')
             console.log(new Date())
